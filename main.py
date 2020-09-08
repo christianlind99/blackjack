@@ -3,9 +3,15 @@ from matplotlib import pyplot as plt
 
 unit = 20  # initial bet and what you end up winning if eventually win
 games = 10  # number of games per session
-sessions = 100  # number of session. eg per month
-bank = [10000]  # initial money available for gambling
+sessions = 365  # number of session. eg per month
+bank = [15000]  # initial money available for gambling
 handlist = []
+inp = input("If you want a custom winrate, enter multiple now (eg 0.48), otherwise hit enter")
+if inp == "":
+    winodds = 0.495
+else:
+    winodds = float(inp)
+
 
 for j in range(sessions):  # this loop runs a new gambling session
     winnings = 0
@@ -13,7 +19,7 @@ for j in range(sessions):  # this loop runs a new gambling session
     l = 0
     for i in range(games):  # this loop runs a round
         while True:  # this loop simulates a game run till won
-            if random.random() > 0.495:  # loss
+            if random.random() > winodds:  # loss
                 table = table * 2
             else:  # won
                 winnings = unit
